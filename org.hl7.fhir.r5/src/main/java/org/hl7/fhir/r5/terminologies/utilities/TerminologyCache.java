@@ -744,12 +744,13 @@ public class TerminologyCache {
       return;
     }
 
-    if ( !cacheErrors &&
-        ( e.v!= null
-        && e.v.getErrorClass() == TerminologyServiceErrorClass.CODESYSTEM_UNSUPPORTED
-        && !cacheToken.hasVersion)) {
-      return;
-    }
+    // fork: we DO want to cache unversioned unsupported code systems
+    // if ( !cacheErrors &&
+    //     ( e.v!= null
+    //     && e.v.getErrorClass() == TerminologyServiceErrorClass.CODESYSTEM_UNSUPPORTED
+    //     && !cacheToken.hasVersion)) {
+    //   return;
+    // }
 
     // map.put returns the entry this key previously held (or null). Removing that exact
     // object from the ordered set is O(1), replacing the old O(n) backward scan that
