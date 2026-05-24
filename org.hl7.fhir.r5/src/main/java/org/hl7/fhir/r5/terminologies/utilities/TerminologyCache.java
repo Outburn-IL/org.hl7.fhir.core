@@ -633,12 +633,13 @@ public class TerminologyCache {
       return;
     }
 
-    if ( !cacheErrors &&
-        ( e.v!= null
-        && e.v.getErrorClass() == TerminologyServiceErrorClass.CODESYSTEM_UNSUPPORTED
-        && !cacheToken.hasVersion)) {
-      return;
-    }
+    // fork: we DO want to cache unversioned unsupported code systems
+    // if ( !cacheErrors &&
+    //     ( e.v!= null
+    //     && e.v.getErrorClass() == TerminologyServiceErrorClass.CODESYSTEM_UNSUPPORTED
+    //     && !cacheToken.hasVersion)) {
+    //   return;
+    // }
 
     boolean n = nc.map.containsKey(cacheToken.key);
     nc.map.put(cacheToken.key, e);
