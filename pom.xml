@@ -818,6 +818,30 @@
             </build>
         </profile>
         <profile>
+            <!--
+                yafva fork: publish to Outburn-IL's GitHub Packages.
+                Activated by `-DdeployToYafva` (no GPG signing, unlike the
+                upstream github-repo profile).
+            -->
+            <id>yafva-github-repo</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>deployToYafva</name>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>github-yafva</id>
+                    <url>https://maven.pkg.github.com/Outburn-IL/org.hl7.fhir.core</url>
+                </snapshotRepository>
+                <repository>
+                    <id>github-yafva</id>
+                    <url>https://maven.pkg.github.com/Outburn-IL/org.hl7.fhir.core</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
             <id>maven-central-repo</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
