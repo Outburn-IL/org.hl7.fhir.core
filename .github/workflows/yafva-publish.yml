@@ -53,13 +53,9 @@ jobs:
         run: |
           ./mvnw -B -ntp versions:set -DnewVersion=${{ steps.ver.outputs.version }} -DgenerateBackupPoms=false
 
-      # The validation.cli module produces an uber-jar we don't want to
-      # publish. Build everything but only deploy library modules.
-      - name: Deploy library modules
+      - name: Deploy all modules
         env:
           GITHUB_ACTOR_ENV: ${{ github.actor }}
           GITHUB_TOKEN_ENV: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./mvnw -B -ntp -DskipTests -DdeployToYafva \
-            -pl '!org.hl7.fhir.validation.cli' \
-            deploy
+          ./mvnw -B -ntp -DskipTests -DdeployToYafva deploy
